@@ -34,7 +34,7 @@ pipeline {
     stage('Build') {      
       steps {
 	withCredentials([string(credentialsId: 'npm-token', variable: 'NPM_TOKEN')]) {
-		sh "echo //npm.skunkhenry.com/:_authToken=${env.NPM_TOKEN} > .npmrc"
+		sh "echo //npmjs.com/:_authToken=${env.NPM_TOKEN} > .npmrc"
        		sh 'npm whoami'
                 sh 'cat .npmrc'
         sh '''   
