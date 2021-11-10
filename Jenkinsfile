@@ -31,9 +31,9 @@ pipeline {
         }
       }
     }
-    stage('Build') {
-      withCredentials([string(credentialsId: 'npm-token', variable: 'NPM_TOKEN')]) {
+    stage('Build') {      
       steps {
+	withCredentials([string(credentialsId: 'npm-token', variable: 'NPM_TOKEN')]) {
         sh '''   
                 echo "//https://www.npmjs.com//:_authToken=${env.NPM_TOKEN}" > .npmrc
                 ng build
