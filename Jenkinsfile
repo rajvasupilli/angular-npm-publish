@@ -35,7 +35,7 @@ pipeline {
       steps {
         sh '''
 	    withCredentials([string(credentialsId: 'npm-token', variable: 'NPM_TOKEN')]) {
-                echo //https://www.npmjs.com//:_authToken=${env.NPM_TOKEN} > .npmrc
+                echo "//https://www.npmjs.com//:_authToken=${env.NPM_TOKEN}" > .npmrc
                 ng build
 	        cd dist/ci-webapp
 		npm whoami                
