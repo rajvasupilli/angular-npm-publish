@@ -32,17 +32,18 @@ pipeline {
       }
     }
     stage('Build') {
+      withCredentials([string(credentialsId: 'npm-token', variable: 'NPM_TOKEN')]) {
       steps {
-        sh '''
-	    withCredentials([string(credentialsId: 'npm-token', variable: 'NPM_TOKEN')]) {
+        sh '''   
                 echo "//https://www.npmjs.com//:_authToken=${env.NPM_TOKEN}" > .npmrc
                 ng build
 	        cd dist/ci-webapp
 		npm whoami                
 	        npm publish
 		rm .npmrc
-	    }
+	    
           '''
+      }
       }
     }
 
