@@ -1,0 +1,39 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ci-webapp": {
+      "projectType": "library",
+      "root": "projects/ci-webapp",
+      "sourceRoot": "projects/ci-webapp/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ci-webapp/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ci-webapp/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ci-webapp/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ci-webapp/src/test.ts",
+            "tsConfig": "projects/ci-webapp/tsconfig.spec.json",
+            "karmaConfig": "projects/ci-webapp/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ci-webapp"
+}
