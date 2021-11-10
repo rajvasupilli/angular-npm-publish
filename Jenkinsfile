@@ -35,6 +35,8 @@ pipeline {
       steps {
         sh '''
               ng build
+	      pwd 
+	      ls -lthr
           '''
       }
     }
